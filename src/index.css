@@ -99,29 +99,16 @@ a {
 }
 
 /* =========================
-   CURSOR
+   DEFAULT CURSOR (NO CUSTOM)
 ========================= */
 
 body {
-  cursor: none;
-}
-
-@media (max-width: 768px) {
-  body {
-    cursor: auto;
-  }
+  cursor: auto; /* Normal cursor */
 }
 
 a,
 button {
-  cursor: none;
-}
-
-@media (max-width: 768px) {
-  a,
-  button {
-    cursor: auto;
-  }
+  cursor: pointer; /* Pointer on clickables */
 }
 
 /* =========================
