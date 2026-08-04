@@ -98,8 +98,9 @@ const Hero = () => {
               transition={{ delay: 0.45, duration: 0.6 }}
               className="mt-6 max-w-lg text-base leading-relaxed text-gray-400"
             >
-              Premium web apps with smooth UI, clean code, and real-world
-              finance & automation experience.
+              I craft fast, modern web experiences with React and TypeScript —
+              from sleek interfaces to finance dashboards and automation that
+              solve real business problems.
             </motion.p>
 
             <motion.div
