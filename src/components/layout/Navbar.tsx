@@ -41,12 +41,16 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-[4.5rem] flex items-center justify-between">
-        <a href="#home" className="group flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 text-sm font-black text-[#050816] shadow-[0_0_24px_rgba(34,211,238,0.35)] group-hover:scale-105 transition-transform">
-            P
+        <a href="#home" className="group flex items-center gap-2.5">
+          <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl overflow-hidden bg-[#0a1020] ring-1 ring-cyan-500/35 shadow-[0_0_24px_rgba(34,211,238,0.35)] group-hover:scale-105 transition-transform">
+            <img
+              src="/plogo.png"
+              alt="Pradeep logo"
+              className="absolute inset-0 h-full w-full object-cover scale-[1.45]"
+            />
           </span>
-          <span className="text-xl font-bold tracking-tight">
-            <span className="text-cyan-400">P</span>radeep
+          <span className="text-xl font-bold tracking-tight text-white">
+            Pradeep
           </span>
         </a>
 
