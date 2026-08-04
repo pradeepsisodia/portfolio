@@ -8,7 +8,7 @@ import {
 
 export const experience = [
   {
-    role: "Frontend Developer",
+    role: "Software Developer",
     company: "Personal Projects",
     period: "2025 - Present",
     icon: FaReact,

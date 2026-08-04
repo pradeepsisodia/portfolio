@@ -3,63 +3,22 @@ import SectionTitle from "../../components/Common/SectionTitle";
 import ProjectCard from "../../components/cards/ProjectCard";
 import { projects } from "../../data/projects";
 
+const Projects = () => {
+  return (
+    <section id="projects" className="relative py-32 overflow-hidden">
+      <div className="pointer-events-none absolute right-0 top-1/4 w-72 h-72 bg-purple-500/10 blur-[120px]" />
 
-const Projects =()=>{
+      <Container>
+        <SectionTitle subtitle="My Work" title="Featured Projects" />
 
-
-return(
-
-<section
-id="projects"
-className="py-32"
->
-
-
-<Container>
-
-
-<SectionTitle
-
-subtitle="My Work"
-
-title="Featured Projects"
-
-/>
-
-
-
-<div
-className="
-grid
-md:grid-cols-2
-lg:grid-cols-3
-gap-8
-mt-20
-"
->
-
-
-{
-projects.map((project)=>(
-<ProjectCard
-key={project.title}
-{...project}
-/>
-))
-}
-
-
-</div>
-
-
-</Container>
-
-
-</section>
-
-)
-
-}
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 mt-16 max-w-[1400px] mx-auto">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.title} {...project} index={index} />
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+};
 
 export default Projects;

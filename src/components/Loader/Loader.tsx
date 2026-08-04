@@ -243,10 +243,8 @@ const Loader = () => {
       flex-col
       items-center
       justify-center
-      bg-gradient-to-br
-      from-[#050816]
-      to-[#0f1729]
-      backdrop-blur-sm
+      bg-[#050816]/70
+      backdrop-blur-md
       "
     >
       {/* Animated Background Gradient */}

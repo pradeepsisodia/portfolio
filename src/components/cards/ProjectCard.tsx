@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
-import {
-  FaGithub,
-  FaExternalLinkAlt,
-} from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import InteractiveCard, {
+  getProjectOpenUrl,
+} from "../ui/InteractiveCard";
 
 interface Props {
   title: string;
@@ -11,6 +10,7 @@ interface Props {
   tech: string[];
   live: string;
   github: string;
+  index?: number;
 }
 
 const ProjectCard = ({
@@ -20,206 +20,112 @@ const ProjectCard = ({
   tech,
   live,
   github,
+  index = 0,
 }: Props) => {
-  return (
-    <motion.div
-      whileHover={{
-        y: -12,
-        scale: 1.02,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-      }}
-      className="
-      group
-      overflow-hidden
-      rounded-3xl
-      border
-      border-cyan-500/20
-      bg-white/5
-      backdrop-blur-xl
-      hover:border-cyan-400/50
-      hover:shadow-[0_0_50px_rgba(34,211,238,.25)]
-      duration-500
-      "
-    >
-      {/* Image */}
+  const openUrl = getProjectOpenUrl(live, github);
 
-      <div className="relative overflow-hidden">
+  const openProject = () => {
+    if (!openUrl) return;
+    window.open(openUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const stopNav = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  return (
+    <InteractiveCard
+      index={index}
+      onClick={openUrl ? openProject : undefined}
+      className="flex flex-col h-full"
+    >
+      <div className="relative overflow-hidden shrink-0">
         <img
           src={image}
           alt={title}
-          className="
-          w-full
-          h-64
-          object-cover
-          group-hover:scale-110
-          transition-all
-          duration-700
-          "
+          className="w-full h-36 sm:h-40 object-cover transition-transform duration-500 group-hover:scale-105"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050816] via-[#050816]/30 to-transparent" />
 
-        {/* Overlay */}
+        {openUrl && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/35 transition-colors duration-300">
+            <span className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 px-3 py-1.5 rounded-full bg-cyan-400 text-[#050816] text-xs font-bold shadow-lg">
+              Open project
+            </span>
+          </div>
+        )}
 
-        <div
-          className="
-          absolute
-          inset-0
-          bg-gradient-to-t
-          from-[#020617]
-          via-[#020617]/20
-          to-transparent
-          "
-        />
-
-        {/* Status */}
-
-        <div className="absolute top-5 right-5">
-          {live ? (
-            <span
-              className="
-              px-4
-              py-2
-              rounded-full
-              bg-green-500
-              text-white
-              text-xs
-              font-semibold
-              shadow-lg
-              "
-            >
-              ● Live
+        <div className="absolute top-2.5 right-2.5">
+          {live?.trim() ? (
+            <span className="px-2.5 py-1 rounded-full bg-emerald-500/90 text-white text-[10px] font-semibold">
+              Live
             </span>
           ) : (
-            <span
-              className="
-              px-4
-              py-2
-              rounded-full
-              bg-yellow-500
-              text-black
-              text-xs
-              font-semibold
-              "
-            >
-              Coming Soon
+            <span className="px-2.5 py-1 rounded-full bg-amber-500/90 text-black text-[10px] font-semibold">
+              Soon
             </span>
           )}
         </div>
       </div>
 
-      {/* Content */}
-
-      <div className="p-8">
-        <h3
-          className="
-          text-3xl
-          font-bold
-          text-white
-          "
-        >
+      <div className="flex flex-col flex-1 p-4">
+        <h3 className="text-base sm:text-lg font-bold text-white leading-snug transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-violet-400 group-hover:bg-clip-text group-hover:text-transparent">
           {title}
         </h3>
 
-        <p
-          className="
-          mt-5
-          text-gray-400
-          leading-8
-          "
-        >
+        <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-relaxed line-clamp-2 flex-1">
           {description}
         </p>
 
-        {/* Tech */}
-
-        <div
-          className="
-          flex
-          flex-wrap
-          gap-3
-          mt-8
-          "
-        >
-          {tech.map((item) => (
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {tech.slice(0, 4).map((item) => (
             <span
               key={item}
-              className="
-              px-4
-              py-2
-              rounded-full
-              bg-cyan-500/10
-              border
-              border-cyan-500/20
-              text-cyan-300
-              text-sm
-              "
+              className="px-2 py-0.5 rounded-md text-[10px] border border-white/10 bg-white/[0.03] text-gray-400 group-hover:text-cyan-200/90 transition-colors"
             >
               {item}
             </span>
           ))}
+          {tech.length > 4 && (
+            <span className="px-2 py-0.5 text-[10px] text-gray-500">
+              +{tech.length - 4}
+            </span>
+          )}
         </div>
 
-        {/* Buttons */}
-
         <div
-          className="
-          flex
-          items-center
-          gap-6
-          mt-8
-          "
+          className="flex items-center gap-4 mt-3 pt-3 border-t border-white/10 text-xs"
+          onClick={stopNav}
+          onKeyDown={(e) => e.stopPropagation()}
         >
-          {live ? (
+          {live?.trim() ? (
             <a
               href={live}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-              flex
-              items-center
-              gap-2
-              text-cyan-400
-              hover:text-white
-              transition
-              "
+              className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-white transition-colors"
             >
-              <FaExternalLinkAlt />
-
-              Live Demo
+              <FaExternalLinkAlt className="text-[10px]" />
+              Live demo
             </a>
           ) : (
-            <span
-              className="
-              text-yellow-400
-              font-medium
-              "
-            >
-              🚧 Not Deployed
-            </span>
+            <span className="text-amber-400/90">Not deployed</span>
           )}
 
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-            flex
-            items-center
-            gap-2
-            text-cyan-400
-            hover:text-white
-            transition
-            "
-          >
-            <FaGithub />
-
-            GitHub
-          </a>
+          {github && github !== "#" && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-white transition-colors"
+            >
+              <FaGithub />
+              Code
+            </a>
+          )}
         </div>
       </div>
-    </motion.div>
+    </InteractiveCard>
   );
 };
 

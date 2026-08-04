@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import {
   FaReact,
   FaCode,
-  FaLaptopCode,
+  FaRocket,
 } from "react-icons/fa";
 
 const AboutImage = () => {
@@ -64,7 +64,7 @@ const AboutImage = () => {
           </h3>
 
           <p className="text-cyan-400 mt-1">
-            Frontend Developer
+            Software Developer
           </p>
         </div>
       </motion.div>
@@ -157,11 +157,10 @@ const AboutImage = () => {
         <FaCode />
       </motion.div>
 
-      {/* Laptop Icon */}
-
       <motion.div
         animate={{
           y: [0, 12, 0],
+          rotate: [0, 8, 0],
         }}
         transition={{
           duration: 4,
@@ -176,15 +175,16 @@ const AboutImage = () => {
           rounded-full
           bg-[#111827]
           border
-          border-blue-500
+          border-cyan-500
           flex
           items-center
           justify-center
-          text-blue-400
+          text-cyan-400
           text-2xl
+          shadow-[0_0_24px_rgba(34,211,238,0.25)]
         "
       >
-        <FaLaptopCode />
+        <FaRocket />
       </motion.div>
 
     </div>

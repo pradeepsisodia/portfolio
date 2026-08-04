@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
-import Button from "../../ui/Button";
+import ResumeDownload from "../../ui/ResumeDownload";
+import AnimatedSkillTag from "../../ui/AnimatedSkillTag";
 
 const skills = [
   "React.js",
@@ -29,7 +30,7 @@ const AboutContent = () => {
         viewport={{ once: true }}
         className="text-4xl lg:text-5xl font-bold leading-tight"
       >
-        Frontend Developer &
+        Software Developer &
         <span className="text-cyan-400"> Finance Technology Professional</span>
       </motion.h2>
 
@@ -41,7 +42,7 @@ const AboutContent = () => {
         className="mt-8 text-gray-400 leading-8 text-lg"
       >
         I'm <span className="text-white font-semibold">Pradeep</span>, a
-        Frontend Developer passionate about building premium web applications
+        Software Developer passionate about building premium web applications
         using React, Next.js, TypeScript and Tailwind CSS.
       </motion.p>
 
@@ -61,42 +62,13 @@ const AboutContent = () => {
 
       <div className="flex flex-wrap gap-3 mt-10">
         {skills.map((skill, index) => (
-          <motion.span
-            key={skill}
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: index * 0.05,
-            }}
-            viewport={{ once: true }}
-            whileHover={{
-              scale: 1.08,
-            }}
-            className="
-              px-4
-              py-2
-              rounded-full
-              bg-cyan-500/10
-              border
-              border-cyan-500/30
-              text-cyan-300
-              text-sm
-              cursor-default
-            "
-          >
-            {skill}
-          </motion.span>
+          <AnimatedSkillTag key={skill} label={skill} index={index} />
         ))}
       </div>
-
       {/* Buttons */}
 
       <div className="flex flex-wrap gap-5 mt-12">
-        <a href="/resume/Pradeep_Resume.pdf" download>
-          <Button primary>
-            📄 Download Resume
-          </Button>
-        </a>
+        <ResumeDownload />
 
         <Link
           to="contact"
@@ -104,9 +76,9 @@ const AboutContent = () => {
           duration={700}
           offset={-70}
         >
-          <Button>
+          {/* <Button>
             💼 Hire Me
-          </Button>
+          </Button> */}
         </Link>
       </div>
     </div>

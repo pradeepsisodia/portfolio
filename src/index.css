@@ -18,18 +18,8 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: radial-gradient(
-      circle at top left,
-      rgba(34, 211, 238, 0.15),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(168, 85, 247, 0.12),
-      transparent 35%
-    ),
-    #050816;
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
+  background: #050816;
 
   color: white;
   overflow-x: hidden;
@@ -220,10 +210,14 @@ html {
   overflow-y: scroll;
 }
 
-/* Smooth transitions for heavy animations */
-* {
+/* Smooth transitions — skip WebGL/canvas backgrounds */
+*:not(.site-net-canvas):not(canvas) {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
+}
+
+#root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
 }

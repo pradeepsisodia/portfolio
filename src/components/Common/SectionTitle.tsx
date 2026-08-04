@@ -23,7 +23,7 @@ const SectionTitle = ({ title, subtitle }: Props) => {
         whileInView={{ opacity:1,y:0 }}
         viewport={{ once:true }}
         transition={{ delay:.2 }}
-        className="text-5xl font-bold mt-4"
+        className="text-4xl sm:text-5xl font-bold mt-4 font-display tracking-tight bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent"
       >
         {title}
       </motion.h2>

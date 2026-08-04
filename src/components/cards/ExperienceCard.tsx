@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
+import AnimatedSkillTag from "../ui/AnimatedSkillTag";
+import InteractiveCard from "../ui/InteractiveCard";
 
 interface Props {
   role: string;
@@ -10,6 +12,7 @@ interface Props {
   icon: IconType;
   color: string;
   align?: "left" | "right";
+  index?: number;
 }
 
 const ExperienceCard = ({
@@ -21,151 +24,72 @@ const ExperienceCard = ({
   icon: Icon,
   color,
   align = "left",
+  index = 0,
 }: Props) => {
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        x: align === "left" ? -120 : 120,
-      }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-      }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.7,
-      }}
-      whileHover={{
-        y: -10,
-        scale: 1.03,
-        rotate: align === "left" ? -1 : 1,
-      }}
-      className="
-      relative
-      overflow-hidden
-      rounded-3xl
-      border
-      border-cyan-500/20
-      bg-white/5
-      backdrop-blur-xl
-      p-8
-      shadow-xl
-      transition-all
-      duration-500
-      hover:border-cyan-400
-      hover:shadow-[0_0_40px_rgba(34,211,238,.35)]
-      "
+    <InteractiveCard
+      index={index}
+      spotlightColor={color}
+      className="p-6 sm:p-7 shadow-xl"
     >
-      {/* Glow */}
-      <div
-        className="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-3xl opacity-20"
-        style={{ background: color }}
-      />
+      <motion.div
+        initial={{ opacity: 0, x: align === "left" ? -40 : 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.55 }}
+      >
+        <div
+          className="absolute -right-8 -top-8 w-36 h-36 rounded-full blur-3xl opacity-20 pointer-events-none"
+          style={{ background: color }}
+          aria-hidden
+        />
 
-      {/* Header */}
+        <div className="flex items-center gap-4">
+          <motion.div
+            whileHover={{ rotate: 12, scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 280 }}
+            className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl shadow-lg shrink-0"
+            style={{
+              background: `${color}22`,
+              color,
+            }}
+          >
+            <Icon aria-hidden />
+          </motion.div>
 
-      <div className="flex items-center gap-5">
-
-        <motion.div
-          whileHover={{
-            rotate: 360,
-            scale: 1.15,
-          }}
-          transition={{
-            duration: .8,
-          }}
-          className="
-          w-16
-          h-16
-          rounded-2xl
-          flex
-          items-center
-          justify-center
-          text-3xl
-          shadow-lg
-          "
-          style={{
-            background: `${color}20`,
-            color,
-          }}
-        >
-          <Icon />
-        </motion.div>
-
-        <div>
-
-          <h3 className="text-2xl font-bold">
-            {role}
-          </h3>
-
-          <p className="text-cyan-400 mt-1">
-            {company}
-          </p>
-
-          <p className="text-gray-500 text-sm mt-1">
-            {period}
-          </p>
-
+          <div className="min-w-0">
+            <h3 className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-violet-400 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+              {role}
+            </h3>
+            <p className="text-cyan-400 text-sm mt-0.5">{company}</p>
+            <p className="text-gray-500 text-xs mt-0.5">{period}</p>
+          </div>
         </div>
 
-      </div>
+        <p className="mt-5 text-sm text-gray-300 leading-relaxed">
+          {description}
+        </p>
 
-      {/* Description */}
+        <div className="flex flex-wrap gap-2 mt-6">
+          {skills.map((skill, skillIndex) => (
+            <AnimatedSkillTag
+              key={skill}
+              label={skill}
+              index={skillIndex}
+            />
+          ))}
+        </div>
 
-      <p className="mt-6 text-gray-300 leading-8">
-        {description}
-      </p>
-
-      {/* Skills */}
-
-      <div className="flex flex-wrap gap-3 mt-8">
-
-        {skills.map((skill) => (
-
-          <motion.span
-            key={skill}
-            whileHover={{
-              scale: 1.08,
-            }}
-            className="
-            px-4
-            py-2
-            rounded-full
-            text-sm
-            font-medium
-            border
-            border-cyan-500/30
-            bg-cyan-500/10
-            text-cyan-300
-            "
-          >
-            {skill}
-          </motion.span>
-
-        ))}
-
-      </div>
-
-      {/* Bottom Border */}
-
-      <motion.div
-        initial={{
-          width: 0,
-        }}
-        whileInView={{
-          width: "100%",
-        }}
-        transition={{
-          duration: 1,
-        }}
-        className="h-[3px] mt-8 rounded-full"
-        style={{
-          background: color,
-        }}
-      />
-
-    </motion.div>
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: "100%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="h-[2px] mt-6 rounded-full"
+          style={{ background: color }}
+        />
+      </motion.div>
+    </InteractiveCard>
   );
 };
 

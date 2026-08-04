@@ -94,6 +94,7 @@ const Experience = () => {
                   <ExperienceCard
                     {...item}
                     align={index % 2 === 0 ? "left" : "right"}
+                    index={index}
                   />
 
                 </div>

@@ -1,130 +1,35 @@
-// import { motion } from "framer-motion";
-
-// interface Props {
-//   icon: any;
-//   name: string;
-// }
-
-// const SkillCard = ({ icon: Icon, name }: Props) => {
-//   return (
-//     <motion.div
-//       whileHover={{
-//         y: -8,
-//         scale: 1.05,
-//       }}
-//       className="
-//       bg-white/5
-//       border border-cyan-500/20
-//       backdrop-blur-xl
-//       rounded-2xl
-//       p-6
-//       flex
-//       flex-col
-//       items-center
-//       gap-4
-//       hover:border-cyan-400
-//       transition-all
-//       duration-300
-//       hover:shadow-[0_0_25px_rgba(34,211,238,.25)]
-//       "
-//     >
-//       <Icon className="text-5xl text-cyan-400" />
-
-//       <h3 className="font-semibold">
-//         {name}
-//       </h3>
-//     </motion.div>
-//   );
-// };
-
-// export default SkillCard;
-
-
+import type { IconType } from "react-icons";
 import { motion } from "framer-motion";
-
+import InteractiveCard from "../ui/InteractiveCard";
 
 interface SkillCardProps {
-  name:string;
-  icon:any;
-  color:string;
+  name: string;
+  icon: IconType;
+  color: string;
+  index?: number;
 }
 
+const SkillCard = ({ name, icon: Icon, color, index = 0 }: SkillCardProps) => {
+  return (
+    <InteractiveCard
+      index={index}
+      spotlightColor={color}
+      className="p-5 sm:p-6 flex flex-col items-center gap-3"
+    >
+      <motion.div
+        style={{ color }}
+        className="text-4xl sm:text-5xl"
+        whileHover={{ scale: 1.12, rotate: 8 }}
+        transition={{ type: "spring", stiffness: 320, damping: 18 }}
+      >
+        <Icon aria-hidden />
+      </motion.div>
 
-const SkillCard = ({
-  name,
-  icon:Icon,
-  color
-}:SkillCardProps)=>{
-
-
-return (
-
-<motion.div
-
-whileHover={{
- y:-10,
- scale:1.05
-}}
-
-transition={{
- duration:.3
-}}
-
-className="
-p-6
-rounded-2xl
-bg-white/5
-border
-border-white/10
-backdrop-blur-xl
-flex
-flex-col
-items-center
-gap-4
-"
-
->
-
-
-<div
-
-style={{
-color:color
-}}
-
-className="
-text-5xl
-"
-
->
-
-<Icon/>
-
-</div>
-
-
-
-<h3
-
-className="
-text-lg
-font-semibold
-text-gray-200
-"
-
->
-
-{name}
-
-</h3>
-
-
-
-</motion.div>
-
-)
-
-}
-
+      <h3 className="text-base font-semibold text-gray-200 text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:via-blue-400 group-hover:to-violet-400 group-hover:bg-clip-text group-hover:text-transparent">
+        {name}
+      </h3>
+    </InteractiveCard>
+  );
+};
 
 export default SkillCard;

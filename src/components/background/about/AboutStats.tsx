@@ -1,105 +1,64 @@
-import { motion } from "framer-motion";
 import {
   FaBriefcase,
   FaCode,
   FaLaptopCode,
   FaChartLine,
 } from "react-icons/fa";
+import InteractiveCard from "../../ui/InteractiveCard";
 
 const stats = [
   {
-    icon: <FaBriefcase />,
+    icon: FaBriefcase,
     value: "1+",
     title: "Years Experience",
-    color: "text-cyan-400",
+    color: "#22d3ee",
   },
   {
-    icon: <FaCode />,
+    icon: FaCode,
     value: "20+",
     title: "Projects Completed",
-    color: "text-blue-400",
+    color: "#60a5fa",
   },
   {
-    icon: <FaLaptopCode />,
+    icon: FaLaptopCode,
     value: "15+",
     title: "Technologies",
-    color: "text-purple-400",
+    color: "#a78bfa",
   },
   {
-    icon: <FaChartLine />,
+    icon: FaChartLine,
     value: "100%",
     title: "Finance & Automation",
-    color: "text-green-400",
+    color: "#34d399",
   },
 ];
 
 const AboutStats = () => {
   return (
-    <div className="grid grid-cols-2 gap-6">
-
-      {stats.map((item, index) => (
-        <motion.div
-          key={item.title}
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          transition={{
-            delay: index * 0.15,
-            duration: 0.6,
-          }}
-          whileHover={{
-            y: -8,
-            scale: 1.04,
-          }}
-          className="
-            relative
-            overflow-hidden
-            rounded-2xl
-            border
-            border-cyan-500/20
-            bg-white/5
-            backdrop-blur-xl
-            p-6
-            text-center
-            transition-all
-            duration-500
-            hover:border-cyan-400
-            hover:shadow-[0_0_30px_rgba(34,211,238,.35)]
-          "
-        >
-          <div
-            className="
-              absolute
-              -top-10
-              -right-10
-              w-24
-              h-24
-              rounded-full
-              bg-cyan-500/10
-              blur-3xl
-            "
-          />
-
-          <div className={`text-4xl mb-4 ${item.color}`}>
-            {item.icon}
-          </div>
-
-          <h3 className="text-3xl font-bold">
-            {item.value}
-          </h3>
-
-          <p className="mt-2 text-gray-400 text-sm">
-            {item.title}
-          </p>
-        </motion.div>
-      ))}
-
+    <div className="grid grid-cols-2 gap-4 sm:gap-5">
+      {stats.map((item, index) => {
+        const Icon = item.icon;
+        return (
+          <InteractiveCard
+            key={item.title}
+            index={index}
+            spotlightColor={item.color}
+            className="p-5 sm:p-6 text-center"
+          >
+            <Icon
+              className="text-3xl mx-auto mb-3"
+              style={{ color: item.color }}
+              aria-hidden
+            />
+            <h3 className="text-2xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-violet-400 group-hover:bg-clip-text group-hover:text-transparent transition-all">
+              {item.value}
+            </h3>
+            <p className="mt-1.5 text-gray-400 text-xs sm:text-sm">
+              {item.title}
+            </p>
+          </InteractiveCard>
+        );
+      })}
     </div>
   );
 };
