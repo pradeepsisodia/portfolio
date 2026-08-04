@@ -71,6 +71,26 @@
 // ];
 export const projects = [
   {
+    title: "Toofan Collection Dashboard",
+    image: "/projects/toofan-collection.png",
+    description:
+      "Live collection leaderboard with date filters, executive search, KPI cards for cases, received vs pending amounts, and collection percentage with export.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Dashboard", "PostgreSQL"],
+    live: "https://collection-toofan-seven.vercel.app/collection",
+    github: "#",
+  },
+
+  {
+    title: "S4S Collection Dashboard",
+    image: "/projects/s4s-collection.png",
+    description:
+      "Salary 4 Sure collection report — bank-wise MTD totals, Cashfree vs cash metrics, filters, export, and real-time collection analytics.",
+    tech: ["React", "Node.js", "SQL", "Dashboard", "Export"],
+    live: "https://s4s-collection-dashboard.onrender.com/",
+    github: "#",
+  },
+
+  {
     title: "ToofanLoan sanction Dashboard",
     image: "/projects/toofan.png",
     description: "A complete Loan Management CRM for customer onboarding, KYC, loan approval, disbursal, collections, repayment tracking and reporting.",

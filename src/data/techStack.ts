@@ -207,6 +207,8 @@ import {
   SiHtml5,
   SiExpress,
   SiMongodb,
+  SiPostgresql,
+  SiMysql,
   SiFirebase,
   SiPostman,
   SiVercel,
@@ -306,6 +308,17 @@ export const techStack = [
         color:"#47A248"
       },
 
+      {
+        name:"PostgreSQL",
+        icon:SiPostgresql,
+        color:"#4169E1"
+      },
+
+      {
+        name:"SQL",
+        icon:SiMysql,
+        color:"#4479A1"
+      },
 
       {
         name:"Firebase",

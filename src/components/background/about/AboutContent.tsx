@@ -18,6 +18,11 @@ const skills = [
   "Collections",
   "MIS Reporting",
   "CRM Development",
+  "Data Analysis",
+  "Finance & Accounting",
+  "PostgreSQL",
+  "SQL",
+  "Finance",
 ];
 
 const AboutContent = () => {
