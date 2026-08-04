@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/layout/Navbar";
 import Loader from "./components/Loader/Loader";
 import VantaNetBackground from "./components/background/VantaNetBackground";
+import AuroraBackground from "./components/background/AuroraBackground";
+import Cursor from "./components/Cursor/Cursor";
 import Skills from "./sections/Skills/Skills";
 import Projects from "./sections/Projects/Projects";
 import Experience from "./sections/Experience/Experience";
@@ -13,8 +15,16 @@ import Footer from "./sections/Footer/Footer";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2200);
@@ -23,6 +33,7 @@ function App() {
 
     return () => {
       clearTimeout(timer);
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -30,6 +41,9 @@ function App() {
     <div className="relative min-h-screen text-white isolate">
       <VantaNetBackground />
       <SEO />
+      <AuroraBackground />
+
+      {!isMobile && <Cursor />}
 
       {loading ? (
         <Loader />
