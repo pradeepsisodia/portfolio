@@ -35,7 +35,7 @@ const AnimatedSkillTag = ({ label, index = 0 }: Props) => {
       ref={ref}
       initial={{ opacity: 0, y: 18, scale: 0.9, rotate: -2 }}
       whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-      viewport={{ once: true, margin: "-24px" }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{
         delay: index * 0.045,
         duration: 0.5,

@@ -12,6 +12,7 @@ import SEO from "./components/SEO/SEO";
 import Hero from "./sections/Hero/hero";
 import About from "./sections/About/about";
 import Footer from "./sections/Footer/Footer";
+import { ContactConfigProvider } from "./context/ContactConfigContext";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,7 @@ function App() {
   }, []);
 
   return (
+    <ContactConfigProvider>
     <div className="relative min-h-screen text-white isolate">
       <VantaNetBackground />
       <SEO />
@@ -62,6 +64,7 @@ function App() {
         </div>
       )}
     </div>
+    </ContactConfigProvider>
   );
 }
 

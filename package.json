@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/copy-resume.mjs",
+    "predev": "node scripts/generate-contact.mjs",
+    "prebuild": "node scripts/copy-resume.mjs && node scripts/generate-contact.mjs",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"

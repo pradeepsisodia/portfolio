@@ -1,8 +1,10 @@
 import Container from "../../components/Common/Container";
 import { FaGithub, FaHeart, FaLinkedin } from "react-icons/fa";
 import { githubHref, linkedinHref } from "../../config/contact";
+import { useContact } from "../../context/ContactConfigContext";
 
 const Footer = () => {
+  useContact();
   const github = githubHref();
   const linkedin = linkedinHref();
 

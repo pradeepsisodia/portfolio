@@ -12,6 +12,7 @@ import Button from "../../components/ui/Button";
 import ResumeDownload from "../../components/ui/ResumeDownload";
 import HeroShowcase from "../../components/hero/HeroShowcase";
 import { githubHref, linkedinHref } from "../../config/contact";
+import { useContact } from "../../context/ContactConfigContext";
 
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
@@ -19,6 +20,10 @@ const fadeUp = {
 };
 
 const Hero = () => {
+  useContact();
+  const github = githubHref();
+  const linkedin = linkedinHref();
+
   return (
     <section
       id="home"
@@ -115,16 +120,16 @@ const Hero = () => {
               </Link>
             </motion.div>
 
-            {(githubHref() || linkedinHref()) && (
+            {(github || linkedin) && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
                 className="flex gap-4 mt-8"
               >
-                {githubHref() && (
+                {github && (
                   <motion.a
-                    href={githubHref()!}
+                    href={github}
                     target="_blank"
                     rel="noreferrer"
                     whileHover={{ scale: 1.1, y: -3 }}
@@ -134,9 +139,9 @@ const Hero = () => {
                     <FaGithub className="text-xl sm:text-2xl" />
                   </motion.a>
                 )}
-                {linkedinHref() && (
+                {linkedin && (
                   <motion.a
-                    href={linkedinHref()!}
+                    href={linkedin}
                     target="_blank"
                     rel="noreferrer"
                     whileHover={{ scale: 1.1, y: -3 }}

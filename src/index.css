@@ -161,9 +161,11 @@ body {
    PERFORMANCE OPTIMIZATION
 ========================= */
 
-/* Hardware acceleration */
-section {
-  will-change: transform;
+/* Limit will-change to desktop — mobile GPU layers can hide transformed content */
+@media (min-width: 769px) {
+  section {
+    will-change: transform;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -210,11 +212,7 @@ html {
   overflow-y: scroll;
 }
 
-/* Smooth transitions — skip WebGL/canvas backgrounds */
-*:not(.site-net-canvas):not(canvas) {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
+/* Avoid global backface-visibility — breaks visibility on iOS Safari with transforms */
 
 #root {
   position: relative;
