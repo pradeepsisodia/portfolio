@@ -207,6 +207,10 @@ body {
    SMOOTH SCROLL ENHANCEMENT
 ========================= */
 
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 /* Prevent layout shift from scrollbar */
 html {
   overflow-y: scroll;

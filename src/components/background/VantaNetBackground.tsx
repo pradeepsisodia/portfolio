@@ -122,8 +122,8 @@ const VantaNetBackground = () => {
         effectRef.current = NET({
           el: vantaMountRef.current,
           THREE,
-          mouseControls: true,
-          touchControls: true,
+          mouseControls: !isMobile,
+          touchControls: false,
           gyroControls: false,
           minHeight: 200,
           minWidth: 200,
@@ -159,7 +159,7 @@ const VantaNetBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden" aria-hidden>
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden>
       <CanvasNetLayer />
       <div
         ref={vantaMountRef}
