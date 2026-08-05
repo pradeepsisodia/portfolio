@@ -26,9 +26,12 @@ function App() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
+    const isMobile = window.innerWidth < 768;
+    const loaderMs = isMobile ? 900 : 2200;
+
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2200);
+    }, loaderMs);
 
     document.documentElement.style.scrollBehavior = "smooth";
 
@@ -50,18 +53,20 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="relative z-[1]">
+        <>
           <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
+          <div className="relative z-[1]">
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Contact />
+            </main>
+            <Footer />
+          </div>
+        </>
       )}
     </div>
     </ContactConfigProvider>
